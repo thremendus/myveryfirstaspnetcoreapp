@@ -1,0 +1,15 @@
+﻿@model Restaurant
+
+<section class="panel panel-default">
+    <h3 class="panel-heading">@Model.Name</h3>
+    <div class="panel-heading">
+        Cuisine: @Model.CusineType
+        
+        <div class="panel-footer">
+            
+            @*This is new with ASP.NET Core. They are called Tag Helpers. They help you write cleaner Razor syntax.*@
+            <a class="btn btn-default"asp-action="Details" asp-route-id="@Model.Id">More</a>
+            <a class="btn btn-default"asp-page="/Restaurants/Edit" asp-route-id =" @Model.Id">Edit</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,25 @@
+﻿@page "{id}"
+@model EditModel
+@{
+
+    <h1>Edit @Model.Restaurant.Name</h1>
+
+    <form method="post">
+        <input type="hidden" asp-for="Restaurant.Id"/>
+
+        <div>
+            <label asp-for="Restaurant.Name"></label>
+            <input asp-for="Restaurant.Name"/>
+            <span asp-validation-for="Restaurant.Name"></span>
+        </div>
+
+        <div>
+            <label asp-for="Restaurant.CusineType"></label>
+            <select asp-for="Restaurant.CusineType" asp-items="@Html.GetEnumSelectList<CusineType>()"></select>
+            <span asp-validation-for="Restaurant.CusineType"></span>
+        </div>
+
+        <input type="submit" name="save" value="Save"/>
+    </form>
+
+}

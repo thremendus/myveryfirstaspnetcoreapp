@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">MY FIRST APP</a>
+            </div>
+            <div class="navbar-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div>Hello, @User.Identity.Name</div>
+                    <a class="btn btn-default" asp-controller="Account" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="btn btn-default" asp-controller="Account" asp-action="Login">Login</a>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        @*I need to have this Render Body, otherwise this wont work.
+            What this RenderBody() does is that when I load Create.cshtml or Details.cshtml (or any cshtml using this layout)
+            it will place the content of those cshtml inside this div, where renderbody is.
+            My Opinion: I think this is just a partial view.*@
+        @RenderBody()
+
+        <footer>
+            @RenderSection("footer", required: false)
+        </footer>
+    </div>
+    <environment include="Development">
+        <script src="~/node_modules/jquery/dist/jquery.js"></script>
+        <script src="~/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    </environment>
+
+</body>
+</html>
